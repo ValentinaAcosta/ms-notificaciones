@@ -8,18 +8,20 @@ namespace ms_notificaciones.Controllers;
 [Route("[controller]")]
 public class NotificacionesController : ControllerBase
 {
-    [Route("correo")]
+    [Route("correo-bienvenida")]
     [HttpPost]
-    public async Task<ActionResult> EnviarCorreo(ModeloCorreo datos)
+    public async Task<ActionResult> EnviarCorreoBienvenida(ModeloCorreo datos)
     {
-        var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
+ var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
         var client = new SendGridClient(apiKey);
-        var from = new EmailAddress("valentina.acosta30784@ucaldas.edu.co", "Valentina Acosta Lopez");
-        var subject = datos.asuntoCorreo;
-        var to = new EmailAddress(datos.correoDestino, datos.nombreDestino);
-        var plainTextContent = "plain text content";
-        var htmlContent = datos.contenidoCorreo;
-        var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+        
+
+        SendGridMessage msg = this.CrearMensajeBase(datos);
+        msg.SetTemplateId(Environment.GetEnvironmentVariable("WELCOME_SENGRID_TEMPLATE_ID"));
+        msg.SetTemplateData(new{
+            name = datos.nombreDestino,
+            message = "Bienvenido a la ccomunidad de la inmobiliaria"
+        });
         var response = await client.SendEmailAsync(msg);
         if (response.StatusCode == System.Net.HttpStatusCode.Accepted){
             return Ok("Correo enviado a la direccion " + datos.correoDestino);
@@ -28,5 +30,38 @@ public class NotificacionesController : ControllerBase
         }
 
     }
+
+        [Route("correo-recuperacion-clave")]
+        [HttpPost]
+        public async Task<ActionResult> EnviarCorreoRecuperacionClave(ModeloCorreo datos)      
+    {
+        var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
+        var client = new SendGridClient(apiKey);
+        
+
+        SendGridMessage msg = this.CrearMensajeBase(datos);
+        msg.SetTemplateId(Environment.GetEnvironmentVariable("WELCOME_SENGRID_TEMPLATE_ID"));
+        msg.SetTemplateData(new{
+            name = datos.nombreDestino,
+            message = "esta es su nueva clave, no la comparta"
+        });
+        var response = await client.SendEmailAsync(msg);
+        if (response.StatusCode == System.Net.HttpStatusCode.Accepted){
+            return Ok("Correo enviado a la direccion " + datos.correoDestino);
+        }else{
+            return BadRequest("Error enviando mensaje a la direccion "+ datos.correoDestino); 
+        }
+
+    }
+private SendGridMessage CrearMensajeBase(ModeloCorreo datos){
+    
+        var from = new EmailAddress(Environment.GetEnvironmentVariable("EMAIL_FROM"), Environment.GetEnvironmentVariable("NAME_FROM"));
+        var subject = datos.asuntoCorreo;
+        var to = new EmailAddress(datos.correoDestino, datos.nombreDestino);
+        var plainTextContent = "plain text content";
+        var htmlContent = datos.contenidoCorreo;
+        var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+        return msg;
+}
    
 }
