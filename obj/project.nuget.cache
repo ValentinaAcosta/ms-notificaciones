@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "LrDfMbPutHeNn/mewAXkUCrfjo1kcEoXka77CPCv+A42n2eHTYad1Fg5u0fx77tZKbQECjk3kT+kbEXhzfOahg==",
+  "dgSpecHash": "LMpJ/JEGG4U4x7DwScaR/fqHADQ9sHkUSEBE667FVNoW5stcjy60gJg+y7QyarhAotxZ31HwR8D+LgrlUQpZBA==",
   "success": true,
   "projectFilePath": "C:\\Users\\valen\\proyecto-ventas\\backend\\ms-notificaciones\\ms-notificaciones.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\valen\\.nuget\\packages\\awssdk.core\\3.7.106.14\\awssdk.core.3.7.106.14.nupkg.sha512",
+    "C:\\Users\\valen\\.nuget\\packages\\awssdk.simplenotificationservice\\3.7.101.43\\awssdk.simplenotificationservice.3.7.101.43.nupkg.sha512",
     "C:\\Users\\valen\\.nuget\\packages\\dotnetenv\\2.5.0\\dotnetenv.2.5.0.nupkg.sha512",
     "C:\\Users\\valen\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\valen\\.nuget\\packages\\microsoft.extensions.configuration\\1.1.2\\microsoft.extensions.configuration.1.1.2.nupkg.sha512",
