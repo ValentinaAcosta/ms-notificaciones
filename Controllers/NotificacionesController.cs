@@ -53,12 +53,38 @@ public class NotificacionesController : ControllerBase
         }
 
     }
+
+
+
+            [Route("enviar-correo-2fa")]
+        [HttpPost]
+        public async Task<ActionResult> EnviarCorreo2fa(ModeloCorreo datos)      
+    {
+        var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
+        var client = new SendGridClient(apiKey);
+        
+
+        SendGridMessage msg = this.CrearMensajeBase(datos);
+        msg.SetTemplateId(Environment.GetEnvironmentVariable("TwoFA_SENGRID_TEMPLATE_ID"));
+        msg.SetTemplateData(new{
+            nombre = datos.nombreDestino,
+            mensaje = datos.contenidoCorreo,
+            asunto = datos.asuntoCorreo
+        });
+        var response = await client.SendEmailAsync(msg);
+        if (response.StatusCode == System.Net.HttpStatusCode.Accepted){
+            return Ok("Correo enviado a la direccion " + datos.correoDestino);
+        }else{
+            return BadRequest("Error enviando mensaje a la direccion "+ datos.correoDestino); 
+        }
+
+    }
 private SendGridMessage CrearMensajeBase(ModeloCorreo datos){
     
         var from = new EmailAddress(Environment.GetEnvironmentVariable("EMAIL_FROM"), Environment.GetEnvironmentVariable("NAME_FROM"));
         var subject = datos.asuntoCorreo;
         var to = new EmailAddress(datos.correoDestino, datos.nombreDestino);
-        var plainTextContent = "plain text content";
+        var plainTextContent = datos.contenidoCorreo;
         var htmlContent = datos.contenidoCorreo;
         var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
         return msg;
