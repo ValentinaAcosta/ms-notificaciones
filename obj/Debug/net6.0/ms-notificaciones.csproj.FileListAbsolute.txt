@@ -28,3 +28,10 @@ C:\Users\valen\proyecto-ventas\backend\ms-notificaciones\obj\Debug\net6.0\ref\ms
 C:\Users\valen\proyecto-ventas\backend\ms-notificaciones\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\valen\proyecto-ventas\backend\ms-notificaciones\bin\Debug\net6.0\SendGrid.dll
 C:\Users\valen\proyecto-ventas\backend\ms-notificaciones\bin\Debug\net6.0\StarkbankEcdsa.dll
+C:\Users\valen\proyecto-ventas\backend\ms-notificaciones\obj\Debug\net6.0\staticwebassets\msbuild.ms-notificaciones.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\valen\proyecto-ventas\backend\ms-notificaciones\obj\Debug\net6.0\staticwebassets\msbuild.build.ms-notificaciones.props
+C:\Users\valen\proyecto-ventas\backend\ms-notificaciones\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.ms-notificaciones.props
+C:\Users\valen\proyecto-ventas\backend\ms-notificaciones\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.ms-notificaciones.props
+C:\Users\valen\proyecto-ventas\backend\ms-notificaciones\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\valen\proyecto-ventas\backend\ms-notificaciones\bin\Debug\net6.0\DotNetEnv.dll
+C:\Users\valen\proyecto-ventas\backend\ms-notificaciones\bin\Debug\net6.0\Sprache.dll

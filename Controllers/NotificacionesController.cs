@@ -24,7 +24,7 @@ public class NotificacionesController : ControllerBase
         if (response.StatusCode == System.Net.HttpStatusCode.Accepted){
             return Ok("Correo enviado a la direccion " + datos.correoDestino);
         }else{
-            return BadRequest("Error enciando mensaje a la direccion "+ datos.correoDestino); 
+            return BadRequest("Error enviando mensaje a la direccion "+ datos.correoDestino); 
         }
 
     }
